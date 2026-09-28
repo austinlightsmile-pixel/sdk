@@ -1,0 +1,33 @@
+{
+  "pipeline": {
+    "lint": {
+      "inputs": [
+        "sdks/*/src/**.ts",
+        "sdks/*/src/**.tsx"
+      ]
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "bun.lock",
+        "**/package.json",
+        "sdks/*/src/**.ts",
+        "sdks/*/src/**.tsx"
+      ],
+      "outputs": [
+        "sdks/*/dist/**"
+      ]
+    },
+    "test": {
+      "dependsOn": [
+        "build"
+      ],
+      "inputs": [
+        "sdks/*/dist/**"
+      ]
+    },
+    "typecheck": {
+      "dependsOn": []
+    }
+  }
+}
